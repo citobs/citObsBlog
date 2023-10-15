@@ -4,6 +4,7 @@ import dev.citobs.citblog2.model.RoleType;
 import dev.citobs.citblog2.model.User;
 import dev.citobs.citblog2.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -20,7 +21,17 @@ public class DummyControllerTest {
     private UserRepository userRepository;
 
     //password, email 수정
-    @Transactional
+    @DeleteMapping("/dummy/user/{id}")
+    public String delete(@PathVariable int id) {
+        try{
+            userRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException e){
+            return "삭제에 실패하였습니다. 해당 id는 db에 없음";
+        }
+        return "삭제되었다 id :"+id;
+    }
+
+    @Transactional// 함수 종료시에 자동으로 커밋됨.
     @PutMapping("/dummy/user/{id}")
     //json데이터 가져오기 @requestBody
     public User updateUser(@PathVariable int id, @RequestBody User requestUser){
@@ -45,7 +56,7 @@ public class DummyControllerTest {
 
         //save가 없는데도 저장됨, 더티체킹이라고 함
 
-        return null;
+        return user;
     }
 
     //
