@@ -23,8 +23,8 @@ public class UserApiController {
 
         user.setRole(RoleType.USER);
         //실제로 DB에 Insert를 하고 아래에서 return이 되면 된다.
-        int result = userService.회원가입(user);
-        return new ResponseDto<Integer>(HttpStatus.OK, result);
+        userService.회원가입(user);
+        return new ResponseDto<Integer>(HttpStatus.OK, 1);
 
     }
 }
