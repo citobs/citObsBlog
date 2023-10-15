@@ -9,3 +9,12 @@
     - DB스키마 : blog
     - properties => yml 변경
     - CRUD 최종완성, 익셉션까지 완성
+
+# 화면설계 및 프론트단에 DB데이터 가져오는 중
+    - ajax 비동기 처리 완료
+    - 기존 slim버전은 ajax를 지원암함. 3.5.1버전으로 다운그레이드
+    - <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+# 화면설계 및 적용완료 백단 로그인 회원가입 DB연동 성공
+    - ajax에서 데이터연결 및 적용, DB주입완료
+    - DTO 생성 및 연결 완료
