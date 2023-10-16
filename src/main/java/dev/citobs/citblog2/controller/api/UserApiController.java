@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 public class UserApiController {
 
@@ -26,5 +28,16 @@ public class UserApiController {
         userService.회원가입(user);
         return new ResponseDto<Integer>(HttpStatus.OK, 1);
 
+    }
+
+    @PostMapping("/api/user/login")
+    public ResponseDto<Integer> login(@RequestBody User user, HttpSession session) {
+        System.out.println("UserAPI호출됨:login");
+        User principal = userService.로그인(user); //principal(접근주체)
+
+        if(principal != null) {
+            session.setAttribute("principal", principal);
+        }
+        return new ResponseDto<Integer>(HttpStatus.OK, 1);
     }
 }
