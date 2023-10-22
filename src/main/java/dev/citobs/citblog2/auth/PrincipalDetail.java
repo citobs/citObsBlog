@@ -1,12 +1,15 @@
 package dev.citobs.citblog2.auth;
 
 import dev.citobs.citblog2.model.User;
+import lombok.Data;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+@Getter
 public class PrincipalDetail implements UserDetails {
     private User user; //컴포지션
 
