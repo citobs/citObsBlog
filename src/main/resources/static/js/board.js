@@ -3,6 +3,10 @@ let index = {
         $("#btn-save").on("click", () =>{
             this.save();
         });
+
+        $("#btn-delete").on("click", () =>{
+            this.deleteById();
+        });
     },
 
     save:function (){
@@ -29,7 +33,24 @@ let index = {
             alert(JSON.stringify(error))
 
         });
+    },
+
+    deleteById:function (){
+        var id = $("#id").text();
+        $.ajax({
+            type:"DELETE",
+            url:"/api/board/"+id,
+            dataType:"json"//응답으로 온게 json이면 javascripts오브젝트로 변경
+        }).done(function (resp){
+            alert("삭제 완료!");
+            location.href="/";
+        }).fail(function (error){
+            alert(JSON.stringify(error))
+
+        });
     }
+
+
 }
 
 index.init();
